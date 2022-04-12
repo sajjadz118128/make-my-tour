@@ -1,0 +1,26 @@
+<% layout('layouts/boilerplate') %>
+    <div id="map" style="width: 100%; height: 500px;"></div>
+    <h1 class="my-5 text-center py-1">All Tourist Spots</h1>
+    <% for (let campground of campgrounds){ %>
+        <div class="card mb-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="img-fluid" src="<%= campground.image %> " alt="">
+                </div>
+                <div class="col-md-8 mt-3">
+                    <h5 class="card-title">
+                        <%= campground.title %>
+                    </h5>
+                    <p class="card-text">
+                        <%= campground.description %>
+                    </p>
+                    <a href="/spots/<%= campground._id %>" class="btn btn-info">View</a>
+                </div>
+            </div>
+        </div>
+        <% } %>
+            <script>
+                const campgrounds = '<%-JSON.stringify(campgrounds)%>';
+                const token = '<%-process.env.token%>';
+            </script>
+            <script src="/scripts/clusterMap.js"></script>
